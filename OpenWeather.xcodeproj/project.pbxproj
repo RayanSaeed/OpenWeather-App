@@ -14,6 +14,9 @@
 		C13F57EC284D03EC0015EC7D /* OpenWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F57EB284D03EC0015EC7D /* OpenWeatherTests.swift */; };
 		C13F57F6284D03EC0015EC7D /* OpenWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F57F5284D03EC0015EC7D /* OpenWeatherUITests.swift */; };
 		C13F57F8284D03EC0015EC7D /* OpenWeatherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F57F7284D03EC0015EC7D /* OpenWeatherUITestsLaunchTests.swift */; };
+		C13F5809284D2B950015EC7D /* CombineAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F5808284D2B950015EC7D /* CombineAPI.swift */; };
+		C13F580B284D2BC10015EC7D /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F580A284D2BC10015EC7D /* APIError.swift */; };
+		C13F580D284D2BDA0015EC7D /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13F580C284D2BDA0015EC7D /* Endpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		C13F57F1284D03EC0015EC7D /* OpenWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C13F57F5284D03EC0015EC7D /* OpenWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherUITests.swift; sourceTree = "<group>"; };
 		C13F57F7284D03EC0015EC7D /* OpenWeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C13F5808284D2B950015EC7D /* CombineAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineAPI.swift; sourceTree = "<group>"; };
+		C13F580A284D2BC10015EC7D /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		C13F580C284D2BDA0015EC7D /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,7 @@
 		C13F57CE284D03EB0015EC7D = {
 			isa = PBXGroup;
 			children = (
+				C13F57DA284D03EB0015EC7D /* OpenWeatherApp.swift */,
 				C13F57D9284D03EB0015EC7D /* OpenWeather */,
 				C13F57EA284D03EC0015EC7D /* OpenWeatherTests */,
 				C13F57F4284D03EC0015EC7D /* OpenWeatherUITests */,
@@ -94,8 +101,9 @@
 		C13F57D9284D03EB0015EC7D /* OpenWeather */ = {
 			isa = PBXGroup;
 			children = (
-				C13F57DA284D03EB0015EC7D /* OpenWeatherApp.swift */,
-				C13F57DC284D03EB0015EC7D /* ContentView.swift */,
+				C13F5804284D06970015EC7D /* Services */,
+				C13F5806284D06CC0015EC7D /* Models */,
+				C13F5807284D06D20015EC7D /* Scenes */,
 				C13F57DE284D03EC0015EC7D /* Assets.xcassets */,
 				C13F57E0284D03EC0015EC7D /* Preview Content */,
 			);
@@ -125,6 +133,39 @@
 				C13F57F7284D03EC0015EC7D /* OpenWeatherUITestsLaunchTests.swift */,
 			);
 			path = OpenWeatherUITests;
+			sourceTree = "<group>";
+		};
+		C13F5804284D06970015EC7D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C13F5805284D069D0015EC7D /* Networking */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C13F5805284D069D0015EC7D /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C13F5808284D2B950015EC7D /* CombineAPI.swift */,
+				C13F580A284D2BC10015EC7D /* APIError.swift */,
+				C13F580C284D2BDA0015EC7D /* Endpoint.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		C13F5806284D06CC0015EC7D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C13F5807284D06D20015EC7D /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				C13F57DC284D03EB0015EC7D /* ContentView.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,7 +299,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C13F57DD284D03EB0015EC7D /* ContentView.swift in Sources */,
+				C13F580B284D2BC10015EC7D /* APIError.swift in Sources */,
+				C13F5809284D2B950015EC7D /* CombineAPI.swift in Sources */,
 				C13F57DB284D03EB0015EC7D /* OpenWeatherApp.swift in Sources */,
+				C13F580D284D2BDA0015EC7D /* Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
