@@ -10,27 +10,36 @@ import XCTest
 
 class OpenWeatherTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    func testOpenWeatherAPI_environment_is_set_correctly() throws {
+		// Given
+		let env = OpenWeatherAPIEnvironment.development
+		let api = OpenWeatherAPI(environment: env)
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+		// When
+		let apiEnv: OpenWeatherAPIEnvironment = api.environment as! OpenWeatherAPIEnvironment
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+		// Then
+		XCTAssertEqual(apiEnv, .development)
+	}
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+	func testOpenWeatherAPI_baseUrl_is_set_correctly() throws {
+		// Given
+		enum TestEnvironment: Environment {
+			case test
+
+			var baseURL: String { "www.google.com" }
+			var headers: ReaquestHeaders? { .none }
+		}
+
+		let env = TestEnvironment.test
+		let api = OpenWeatherAPI(environment: env)
+
+		// When
+		let baseUrl = api.environment.baseURL
+
+		// Then
+		XCTAssertEqual("www.google.com", baseUrl)
+	}
+
 
 }
