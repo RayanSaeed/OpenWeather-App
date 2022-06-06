@@ -26,18 +26,43 @@ extension CombineAPI {
 					qualityOfService: DispatchQoS.QoSClass = .default,
 					queue: DispatchQueue = .main,
 					decoder: JSONDecoder = .init(),
-					retries: Int = 0) -> AnyPublisher<T, Error> where T: Decodable {
+					retries: Int = 1) -> AnyPublisher<T, Error> where T: Decodable {
 		return session.dataTaskPublisher(for: request)
-			.tryMap {
-				guard let response = $0.response as? HTTPURLResponse, (200...299).contains(response.statusCode) else {
-					throw APIError.responseUnsuccessful
+			.tryMap { data, response in
+
+				guard let response = response as? HTTPURLResponse else {
+					throw APIError.invalidResponse
 				}
-				return $0.data
+
+				switch verify(response: response) {
+					case .success:
+						return data
+					case .failure(let error):
+						throw error
+				}
 			}
 			.subscribe(on: DispatchQueue.global(qos: qualityOfService))
 			.receive(on: queue)
 			.decode(type: T.self, decoder: decoder)
 			.retry(retries)
 			.eraseToAnyPublisher()
+	}
+
+	/// Checks if the HTTP status code is valid and there is data otherwise returns an error.
+	/// - Parameters:
+	///   - data: The data or file URL .
+	///   - response: The received  optional `URLResponse` instance.
+	/// - Returns: A `Result` instance.
+	private func verify(response: HTTPURLResponse) -> Result<Bool, Error> {
+		switch response.statusCode {
+			case 200...299:
+				return .success(true)
+			case 400...499:
+				return .failure(APIError.badRequest)
+			case 500...599:
+				return .failure(APIError.serverError)
+			default:
+				return .failure(APIError.unknown)
+		}
 	}
 }
