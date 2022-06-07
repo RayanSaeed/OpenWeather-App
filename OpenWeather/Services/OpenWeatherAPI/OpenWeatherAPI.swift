@@ -71,5 +71,3 @@ extension OpenWeatherEndpoint: Endpoint {
 		}
 	}
 }
-
-// 44.8125° N, 20.4612° E
