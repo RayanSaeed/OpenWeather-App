@@ -59,6 +59,7 @@ extension Endpoint {
 		guard var urlComponents = URLComponents(string: baseURL) else {
 			return nil
 		}
+
 		// Add the request path to the existing base URL path
 		urlComponents.path = urlComponents.path + path
 
@@ -75,9 +76,8 @@ extension Endpoint {
 			return nil
 		}
 		// Convert parameters to query items.
-		return parameters.map { (key: String, value: Any?) -> URLQueryItem in
-			let valueString = String(describing: value)
-			return URLQueryItem(name: key, value: valueString)
+		return parameters.map { key, value in
+			return URLQueryItem(name: key, value: "\(value ?? "")")
 		}
 	}
 }
