@@ -1,5 +1,5 @@
 //
-//  ForecastListView+ViewModel.swift
+//  ForecastListView+Model.swift
 //  OpenWeather
 //
 //  Created by Rayan Saeed on 06/06/2022.
@@ -15,7 +15,7 @@ extension ForecastListView {
 		private var cancellable: AnyCancellable?
 
 		// MARK: - Publishers -
-		@Published var dataSource: Int = 1 // By default we load data from the local JSON
+		@Published var dataSource: Int = 0 // By default we load data from the local JSON
 		@Published var forecastViewModels = [DayForecast]()
 
 		// MARK: - Public properties -
@@ -30,10 +30,13 @@ extension ForecastListView {
 
 		// MARK: - Public methods -
 		func getWeatherForecast(for city: String) {
-			// First, we reset the previous data
+			// First, we cancel any ongoing API requests
+			cancellable?.cancel()
+
+			// then we reset the previous data
 			forecastViewModels = []
 
-			// Then we fetch new data
+			// and then we fetch new data
 			if dataSource == 0 {
 				loadDataFromJson()
 			} else {
@@ -57,7 +60,7 @@ extension ForecastListView {
 
 		private func convertDataSetIntoViewModels() {
 			let viewModels = forecasts.map {
-				ForecastView.ViewModel(
+				ForecastView.Model(
 					id: $0.time,
 					time: displayable(.time, forecast: $0),
 					date: displayable(.date, forecast: $0),
@@ -68,6 +71,9 @@ extension ForecastListView {
 					maxTemperature: displayable(.maxTemp, forecast: $0)
 				)
 			}
+//			[• • • • • • • •]
+//
+//			[[• •]. [• • • • • •]]
 
 			forecastViewModels = viewModels.chunked { $0.date == $1.date }.map { .init(date: $0.first!.date, forecastViewModels: .init($0)) }
 		}

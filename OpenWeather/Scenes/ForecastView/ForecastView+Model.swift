@@ -1,16 +1,14 @@
 //
-//  ForecastView+ViewModel.swift
+//  ForecastView+Model.swift
 //  OpenWeather
 //
 //  Created by Rayan Saeed on 06/06/2022.
 //
 
 import Foundation
-import Combine
 
 extension ForecastView {
-
-	struct ViewModel: Hashable {
+	struct Model: Hashable {
 		var id: Int
 		var time: String = "00:00"
 		var date: String = "-- ---"
@@ -27,5 +25,5 @@ extension ForecastView {
 /// This is a helper struct to represent forecasts for a single day
 struct DayForecast {
 	let date: String
-	let forecastViewModels: [ForecastView.ViewModel]
+	let forecastViewModels: [ForecastView.Model]
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ForecastView: View {
 
-	var viewModel: ViewModel
+	var viewModel: Model
 
 	var body: some View {
 		VStack {
@@ -43,7 +43,7 @@ struct ForecastView: View {
 }
 
 struct ForecastView_Previews: PreviewProvider {
-	let viewModel = ForecastView.ViewModel(
+	let viewModel = ForecastView.Model(
 		id: 1654580807,
 		time: "03:00 PM",
 		weatherIconUrl: nil,

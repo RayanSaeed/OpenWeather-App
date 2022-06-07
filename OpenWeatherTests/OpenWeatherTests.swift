@@ -10,6 +10,21 @@ import XCTest
 
 class OpenWeatherTests: XCTestCase {
 
+	// MARK: - Private data types
+
+	private enum TestEnvironment: Environment {
+		case test
+
+		var baseURL: String { "https://www.google.com" }
+		var headers: ReaquestHeaders? { .none }
+	}
+
+	// MARK: - Private properties
+
+	private let env = TestEnvironment.test
+
+	// MARK: - Tests
+
     func testOpenWeatherAPI_environment_is_set_correctly() throws {
 		// Given
 		let env = OpenWeatherAPIEnvironment.development
@@ -24,22 +39,54 @@ class OpenWeatherTests: XCTestCase {
 
 	func testOpenWeatherAPI_baseUrl_is_set_correctly() throws {
 		// Given
-		enum TestEnvironment: Environment {
-			case test
-
-			var baseURL: String { "www.google.com" }
-			var headers: ReaquestHeaders? { .none }
-		}
-
-		let env = TestEnvironment.test
-		let api = OpenWeatherAPI(environment: env)
+		let sut = OpenWeatherAPI(environment: env)
 
 		// When
-		let baseUrl = api.environment.baseURL
+		let baseUrl = sut.environment.baseURL
 
 		// Then
-		XCTAssertEqual("www.google.com", baseUrl)
+		XCTAssertEqual("https://www.google.com", baseUrl)
 	}
 
+	func testEndpoint_generates_non_nil_url() throws {
+		// Given
+		enum TestEndpoint: Endpoint {
+			case custom
 
+			var path: String {
+				"/customPath"
+			}
+
+			var method: RequestMethod { .get }
+			var headers: ReaquestHeaders? { nil }
+			var parameters: RequestParameters? { nil }
+		}
+
+		// When
+		let url = TestEndpoint.custom.urlRequest(with: env)?.url
+
+		// Then
+		XCTAssertNotEqual(url, nil)
+	}
+
+	func testEndpoint_generates_valid_url() throws {
+		// Given
+		enum TestEndpoint: Endpoint {
+			case custom
+
+			var path: String {
+				"/customPath"
+			}
+
+			var method: RequestMethod { .get }
+			var headers: ReaquestHeaders? { nil }
+			var parameters: RequestParameters? { nil }
+		}
+
+		// When
+		let url = TestEndpoint.custom.urlRequest(with: env)?.url
+
+		// Then
+		XCTAssertEqual(url?.absoluteString, "https://www.google.com/customPath")
+	}
 }
