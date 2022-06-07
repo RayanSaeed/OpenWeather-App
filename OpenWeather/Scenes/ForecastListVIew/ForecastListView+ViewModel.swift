@@ -71,10 +71,6 @@ extension ForecastListView {
 					maxTemperature: displayable(.maxTemp, forecast: $0)
 				)
 			}
-//			[• • • • • • • •]
-//
-//			[[• •]. [• • • • • •]]
-
 			forecastViewModels = viewModels.chunked { $0.date == $1.date }.map { .init(date: $0.first!.date, forecastViewModels: .init($0)) }
 		}
 
