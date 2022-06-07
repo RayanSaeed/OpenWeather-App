@@ -61,6 +61,7 @@
 		C13F5821284F1EB30015EC7D /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		C13F5828284F220F0015EC7D /* weather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weather.json; sourceTree = "<group>"; };
 		C13F5832284F25E80015EC7D /* Bundle+Decode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Decode.swift"; sourceTree = "<group>"; };
+		C14DFB3F284FEE2B00F47CE0 /* forecast_test_stub.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = forecast_test_stub.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				C13F5828284F220F0015EC7D /* weather.json */,
+				C14DFB3F284FEE2B00F47CE0 /* forecast_test_stub.json */,
 				C13F57DE284D03EC0015EC7D /* Assets.xcassets */,
 				C13F57E0284D03EC0015EC7D /* Preview Content */,
 			);

@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import Combine
 import Algorithms
+import Combine
 
 extension ForecastListView {
 	@MainActor class ViewModel: ObservableObject {
@@ -46,7 +46,7 @@ extension ForecastListView {
 
 		// MARK: - Private methods -
 		private func loadDataFromJson() {
-			let data: WeatherForecastResponse =  Bundle.main.decode("weather.json")
+			let data: WeatherForecastResponse = Bundle.main.decode("weather.json")
 			forecasts = data.list
 		}
 
