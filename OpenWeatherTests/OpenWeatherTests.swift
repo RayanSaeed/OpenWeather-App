@@ -103,16 +103,4 @@ class OpenWeatherTests: XCTestCase {
 
 		XCTAssertEqual(env, TestEnvironment.dev)
 	}
-
-	func testForecastViewModel() {
-		// Given
-		let sut: Forecast = Bundle.main.decode("forecast_test_stub")
-
-		// When
-		let viewModel = ForecastListView.ViewModel()
-		
-
-		// Then
-		<#code#>
-	}
 }
