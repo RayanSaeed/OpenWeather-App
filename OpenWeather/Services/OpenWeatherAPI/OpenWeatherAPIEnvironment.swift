@@ -22,9 +22,9 @@ extension OpenWeatherAPIEnvironment: Environment {
 		switch self {
 			case .development:
 				// Since we don't have a dev url, so we will use the same one
-				return "api.openweathermap.org/data/2.5/"
+				return "https://api.openweathermap.org/data/2.5"
 			case .production:
-				return "api.openweathermap.org/data/2.5/"
+				return "https://api.openweathermap.org/data/2.5"
 		}
 	}
 
@@ -32,7 +32,7 @@ extension OpenWeatherAPIEnvironment: Environment {
 	var headers: ReaquestHeaders? {
 		switch self {
 			case .development, .production:
-				return ["Content-Type" : "application/json"]
+				return ["Content-Type": "application/json"]
 		}
 	}
 }
